@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.example.demo.utilitaire.Connexion;
@@ -86,6 +87,34 @@ public class Categorie_enchere {
             stmt.close();
             con.close();
         }
+    }
+    public ArrayList<Categorie_enchere> lister() throws SQLException{
+        PreparedStatement stmt=null;
+        Connection con = null;
+        ResultSet rs=null;
+        ArrayList<Categorie_enchere> liste=null;
+        try {
+            con = new Connexion().getCon();
+            stmt=con.prepareStatement("select * from categorie_enchere");
+
+           rs= stmt.executeQuery();
+           while(rs.next()){
+               Categorie_enchere ce=new Categorie_enchere();
+               ce.setIdcategorie_enchere(rs.getInt("idcategorie_enchere"));
+               ce.setLibelle(rs.getString("libelle"));
+               liste.add(ce);
+           }
+        } catch (SQLException ex) {
+            Logger.getLogger(Categorie_enchere.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Categorie_enchere.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            rs.close();
+            stmt.close();
+            con.close();
+        }
+        return liste;
     }
     
 }
