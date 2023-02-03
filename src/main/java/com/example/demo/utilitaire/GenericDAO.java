@@ -28,7 +28,7 @@ public class GenericDAO{
         this.objet = objet;
         try {
             Class.forName("org.postgresql.Driver");
-            this.con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/enchere?user=test&password=qwerty&ssl=false");
+            this.con = DriverManager.getConnection("jdbc:postgresql://containers-us-west-196.railway.app:6815/railway?user=postgres&password=MKyy3iS7wOBvOBDO4vxo");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(GenericDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
