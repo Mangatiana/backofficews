@@ -92,7 +92,7 @@ public class Categorie_enchere {
         PreparedStatement stmt=null;
         Connection con = null;
         ResultSet rs=null;
-        ArrayList<Categorie_enchere> liste=null;
+        ArrayList<Categorie_enchere> liste=new ArrayList<>();
         try {
             con = new Connexion().getCon();
             stmt=con.prepareStatement("select * from categorie_enchere");
